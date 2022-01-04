@@ -42,8 +42,5 @@ app.use(function (req,res,next) {
   res.render("error/404");
 })
 
-app.get("/", (req: Request, res: Response) => {
-  res.redirect("login/index");
-});
 
 export default app;

@@ -1,52 +1,49 @@
-<div id="add-album" class="d-none">
+<div id="add-album" class="d-none text-white" style="text-align: center;">
     Agregar a album:
-    <form action="/add-to-album" method="post">
-        <input type="hidden" name="ids">
-        <select name="albumid" >
+    <form action="/add-to-album" method="post" class="d-flex align-items-center justify-content-center">
+        <input type="hidden" name="ids" class="form-control" style="width: 18rem;">
+        <select name="albumid" class="form-select m-2"  style="width: 18rem;" >
             <% albums.forEach(album => { %>
-             <option value="<%= album._id%> "><%= album.name%>  </option>
+             <option value="<%= album._id%>" style="width: 18rem;"><%= album.name%>  </option>
             <% }) %>
         </select>
         <input type="submit" value="Agregar" class="btn btn-primary">
     </form>
 </div>
 
-<div class="photos container-fluid d-flex flex-wrap gap-1">
+<div class="gallery">
     <% photos.forEach(photo => { %>
-        <div class="photo">
-            <div class="select-container">
-                <input type="checkbox" class="select-photo" value="<%= photo._id%> ">
-            </div>
-
+        <div class="card">
             <a href="/view/<%= photo._id%>?origin=<%= origin%>">
-                <img src="http://localhost:8088/images/<%= photo.filename%> ">
+                <img src="http://localhost:8088/images/<%= photo.filename%>" class="card-img-top">
             </a>
 
-           
-
-            <div class="actions-container">
+            <div class="card-body d-flex justify-content-center ">
                 <% if (photo.userid === user._id) {
                     if (photo.favorite) { %> 
                     <form action="/remove-favorite" method="post">
                     <input type="hidden" name="photoid" value="<%= photo._id %> ">
                     <input type="hidden" name="origin" value="<%= origin %> ">
-                    <button class="btn btn-danger">Remove Favorite</button>
+                    <button class="btn btn-danger m-1">Remove Favorite</button>
                     </form>
                     <% }else{ %>
                         <form action="/add-favorite" method="post">
                         <input type="hidden" name="photoid" value="<%= photo._id %> ">
                         <input type="hidden" name="origin" value="<%= origin %> ">
-                        <button class="btn btn-danger">Favorite</button>
+                        <button class="btn btn-danger m-1">Favorite</button>
                         </form>  
                     <% } %>   
                 <% } %>  
+                <div class="select-container d-flex align-items-center">
+                    <input type="checkbox" class="select-photo" value="<%= photo._id%> ">
+                </div>
             </div>
         </div>
     <% }) %>
 </div>
 
 <script>
-    const checkboxes = document.querySelectorAll('.select-photo');
+     const checkboxes = document.querySelectorAll('.select-photo');
 
     checkboxes.forEach( checkbox => {
         checkbox.addEventListener("click",(e)=>{

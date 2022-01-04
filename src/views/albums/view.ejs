@@ -12,9 +12,11 @@
 
     <%- include ('../layout/navbar') %>
 
-    <h1><%= album.name %> </h1>
+    <div class="align-items-center justify-content-center">
+        <h1 class="text-white" style="text-align: center;"><%= album.name %> </h1>
+    </div>
+    
 
-   
     <%- include("../layout/photos", { photos: photos, albums: albums, origin: "/albums/" + album._id}) %> 
 
 </body>

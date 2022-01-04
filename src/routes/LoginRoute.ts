@@ -5,6 +5,11 @@ import User, { IUser } from "../model/UserModel";
 
 const router = express.Router();
 
+
+router.get("/", middlewareHome, (req: Request, res: Response) => {
+  res.render("login/index");
+});
+
 router.get("/login", middlewareHome, (req: Request, res: Response) => {
   res.render("login/index");
 });

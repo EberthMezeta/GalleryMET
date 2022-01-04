@@ -11,12 +11,14 @@
 <body>
     
     <%- include ('../layout/navbar') %>
-    <h1>Hola, <%= user.name %> </h1>
 
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" multiple name="photos" id="fileInput" class="d-done">
-        <input type="button" id="bPick" value="Elegir fotos" class="btn btn-primary p-2">
-        <input type="submit" id="bPick" value="Subir fotos" class="btn btn-primary p-2">
+
+    <%- include ('../layout/welcometittle') %>
+   
+
+    <form action="/upload" method="post" enctype="multipart/form-data"  class="d-flex align-items-center justify-content-center">
+        <input type="file" multiple name="photos" id="fileInput" class="form-control  m-2"  style="width: 18rem;">
+        <input type="submit" id="bPick" value="Subir fotos" class="btn btn-primary p-2  m-0.5">
     </form>
 
     <%- include ('../layout/photos',{photos: photos, origin: '/home'}) %>
